@@ -65,8 +65,23 @@ public class Shoot : MonoBehaviour
                         //SI el enemigo tiene el Script le sumamos el numero a la puntuacion
                         if (_scoreRef != null)
                         {
+                            SpawnEnemies spawner = FindObjectOfType<SpawnEnemies>();
+                            ComboKill combo = FindObjectOfType<ComboKill>();
+                            int multiplicador = 1;
+
+                            if (combo != null)
+                            {
+                            multiplicador = combo.AddKill(); // Obtenemos el multiplicador actual
+                            }
                             puntuacion = puntuacion + _scoreRef.score;
-                        }
+
+                            puntuacion = puntuacion + (_scoreRef.score * multiplicador);
+                            if (spawner != null)
+                            {
+                                spawner.AddToRespawnList(hit.collider.gameObject);
+                            }
+
+                    }
                         else return;
                     }
 
