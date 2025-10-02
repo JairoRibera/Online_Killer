@@ -11,18 +11,25 @@ public class Shoot : MonoBehaviour
     private Score _scoreRef;
     private float puntuacion = 0;
 
-    [Header("Balas y Recarga")]
+    //[Header("Balas y Recarga")]
     public int cargador = 5;
     public int bullet = 5;
     public bool canShoot = true;
-    public bool isreloading = false;
-    private float reloadTiempo = 5f;
+    //public bool isreloading = false;
+    private float reloadTiempo = 10f;
     public float reloadContador = 0f;
+    private float cargaRapidaTiempo = 5f;
+    public float cargaRapidaContador = 0f;
+    public bool cargaRapida = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         cargador = bullet;
+        reloadContador = reloadTiempo;
+        cargaRapidaContador = cargaRapidaTiempo;
     }
 
     // Update is called once per frame
@@ -30,25 +37,8 @@ public class Shoot : MonoBehaviour
     {
         Disparo();
         Mostrartexto();
-        if (bullet <= 0)
-        {
-            InicioRecargar();
-        }
-
-        if ((isreloading == true))
-        {
-            reloadContador -= Time.deltaTime;
-            Debug.Log("Restando");
-            if (reloadContador <= 0f)
-            {
-                Debug.Log("Ya tengo balas :)");
-                isreloading = false;
-                bullet = cargador;
-                canShoot = true;
-            }
-            //return;
-        }
-        //Recargar();
+        RecargaRapida();
+        Recargar();
     }
     private void Disparo()
     {
@@ -83,23 +73,55 @@ public class Shoot : MonoBehaviour
                 }
 
         }
-
-    }
-    public void InicioRecargar()
-    {
-        //if (bullet <= 0)
-        //{
+        if (bullet <= 0 && !cargaRapida && canShoot)
+        {
             canShoot = false;
-            isreloading = true;
-            reloadContador = reloadTiempo;
-        //}
-    }
-    //public void Recargar()
-    //{
+            cargaRapida = true;
+        }
 
-    //    InicioRecargar();
+
+    }
+    public void RecargaRapida()
+    {
+        if (cargaRapida == true)
+        {
+            cargaRapidaContador -= Time.deltaTime;
+            Debug.Log("Recarga Rapida");
+            if (cargaRapidaContador <= 0)
+            {
+                Debug.Log("Perdiste la carga rapida");
+                cargaRapida = false;
+                cargaRapidaContador = cargaRapidaTiempo;
+            }
+            if (cargaRapidaContador > 0 && Input.GetKeyDown(KeyCode.M))
+            {
+                reloadContador = 0;
+                bullet = cargador;
+                canShoot = true;
+                cargaRapidaContador = cargaRapidaTiempo;
+                cargaRapida = false;
+            }
+
+        }
+    }
+    public void Recargar()
+    {
+        if(canShoot == false)
+        {
+            reloadContador -= Time.deltaTime;
+            if (reloadContador <= 0f)
+            {
+                bullet = cargador;
+                canShoot = true;
+                reloadContador = reloadTiempo;
+
+            }
+        }
+    }
+    public void Combo()
+    {
         
-    //}
+    }
     private void Mostrartexto()
     {
         //El texto será igual a la puntuacion
