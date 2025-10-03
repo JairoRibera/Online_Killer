@@ -10,7 +10,7 @@ public class Shoot : MonoBehaviour
     public Text textScore;
     private Score _scoreRef;
     private float puntuacion = 0;
-
+    public Text balaText;
     //[Header("Balas y Recarga")]
     public int cargador = 5;
     public int bullet = 5;
@@ -21,7 +21,7 @@ public class Shoot : MonoBehaviour
     private float cargaRapidaTiempo = 5f;
     public float cargaRapidaContador = 0f;
     public bool cargaRapida = false;
-
+    public string Recarga = "Recarga";
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +52,7 @@ public class Shoot : MonoBehaviour
                 //Empezamos la fase Began
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                        bullet--;
+                    bullet--;
                     //Lanzamos un ray desde la dirección del dedo
                     Ray ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
                     RaycastHit hit;
@@ -108,7 +108,7 @@ public class Shoot : MonoBehaviour
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
             }
-            if (cargaRapidaContador > 0 && Input.GetKeyDown(KeyCode.M))
+            if (cargaRapidaContador > 0 && SimpleInput.GetButtonDown(Recarga))
             {
                 reloadContador = 0;
                 bullet = cargador;
@@ -140,7 +140,7 @@ public class Shoot : MonoBehaviour
     private void Mostrartexto()
     {
         //El texto será igual a la puntuacion
-        textScore.text = puntuacion.ToString();
-
+        textScore.text = "Puntuación " + puntuacion.ToString();
+        balaText.text = "6 / " + bullet.ToString();
     }
 }
