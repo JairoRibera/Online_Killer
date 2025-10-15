@@ -22,7 +22,6 @@ public class Shoot : MonoBehaviour
     public float cargaRapidaContador = 0f;
     public bool cargaRapida = false;
     public string Recarga = "Recarga";
-
     // Start is called before the first frame update
     void Start()
     {
@@ -62,16 +61,16 @@ public class Shoot : MonoBehaviour
                         //Obtenemos el Script Score y desactivamos el objeto
                         _scoreRef = hit.collider.gameObject.GetComponent<Score>();
                         hit.collider.gameObject.SetActive(false);
-                        //SI el enemigo tiene el Script le sumamos el numero a la puntuacion
-                        if (_scoreRef != null)
+                    //SI el enemigo tiene el Script le sumamos el numero a la puntuacion
+                    if (_scoreRef != null)
                         {
                             SpawnEnemies spawner = FindObjectOfType<SpawnEnemies>();
                             ComboKill combo = FindObjectOfType<ComboKill>();
                             int multiplicador = 1;
-
+                            
                             if (combo != null)
                             {
-                            multiplicador = combo.AddKill(); // Obtenemos el multiplicador actual
+                                multiplicador = combo.AddKill(); // Obtenemos el multiplicador actual
                             }
                             puntuacion = puntuacion + _scoreRef.score;
 
@@ -96,6 +95,7 @@ public class Shoot : MonoBehaviour
 
 
     }
+
     public void RecargaRapida()
     {
         if (cargaRapida == true)
