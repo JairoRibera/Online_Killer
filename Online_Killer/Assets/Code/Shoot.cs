@@ -12,11 +12,11 @@ public class Shoot : MonoBehaviour
     private float puntuacion = 0;
     public Text balaText;
     //[Header("Balas y Recarga")]
-    public int cargador = 5;
-    public int bullet = 5;
+    public int cargador = 6;
+    public int bullet = 6;
     public bool canShoot = true;
     //public bool isreloading = false;
-    private float reloadTiempo = 10f;
+    private float reloadTiempo = 7f;
     public float reloadContador = 0f;
     private float cargaRapidaTiempo = 5f;
     public float cargaRapidaContador = 0f;
@@ -29,15 +29,16 @@ public class Shoot : MonoBehaviour
         cargador = bullet;
         reloadContador = reloadTiempo;
         cargaRapidaContador = cargaRapidaTiempo;
+        balaText.text = "6 / " + bullet.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Disparo();
         Mostrartexto();
         RecargaRapida();
         Recargar();
+        Disparo();
     }
     private void Disparo()
     {
@@ -48,6 +49,8 @@ public class Shoot : MonoBehaviour
                 //Guarda el input del primer dedo
                 Touch touch = Input.GetTouch(0);
                 //Restamos 1 a la municion
+                if(bullet > 0)
+            {
                 //Empezamos la fase Began
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
@@ -61,13 +64,13 @@ public class Shoot : MonoBehaviour
                         //Obtenemos el Script Score y desactivamos el objeto
                         _scoreRef = hit.collider.gameObject.GetComponent<Score>();
                         hit.collider.gameObject.SetActive(false);
-                    //SI el enemigo tiene el Script le sumamos el numero a la puntuacion
-                    if (_scoreRef != null)
+                        //SI el enemigo tiene el Script le sumamos el numero a la puntuacion
+                        if (_scoreRef != null)
                         {
                             SpawnEnemies spawner = FindObjectOfType<SpawnEnemies>();
                             ComboKill combo = FindObjectOfType<ComboKill>();
                             int multiplicador = 1;
-                            
+
                             if (combo != null)
                             {
                                 multiplicador = combo.AddKill(); // Obtenemos el multiplicador actual
@@ -80,11 +83,13 @@ public class Shoot : MonoBehaviour
                                 spawner.AddToRespawnList(hit.collider.gameObject);
                             }
 
-                    }
+                        }
                         else return;
                     }
 
                 }
+            }
+
 
         }
         if (bullet <= 0 && !cargaRapida && canShoot)
@@ -108,13 +113,14 @@ public class Shoot : MonoBehaviour
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
             }
-            if (cargaRapidaContador > 0 && SimpleInput.GetButtonDown(Recarga))
+            if (bullet <= 0 && cargaRapidaContador > 0 && SimpleInput.GetButtonDown(Recarga))
             {
-                reloadContador = 0;
+                reloadContador = reloadTiempo;
+                //reloadContador = 0;
                 bullet = cargador;
                 canShoot = true;
-                cargaRapidaContador = cargaRapidaTiempo;
                 cargaRapida = false;
+                cargaRapidaContador = cargaRapidaTiempo;
             }
 
         }
@@ -129,13 +135,8 @@ public class Shoot : MonoBehaviour
                 bullet = cargador;
                 canShoot = true;
                 reloadContador = reloadTiempo;
-
             }
         }
-    }
-    public void Combo()
-    {
-        
     }
     private void Mostrartexto()
     {

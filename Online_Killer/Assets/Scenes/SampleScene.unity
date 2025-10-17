@@ -2044,7 +2044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1217106886
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2671,8 +2671,8 @@ MonoBehaviour:
     m_Bits: 64
   textScore: {fileID: 1102989549}
   balaText: {fileID: 2092441709}
-  cargador: 5
-  bullet: 5
+  cargador: 6
+  bullet: 6
   canShoot: 1
   reloadContador: 0
   cargaRapidaContador: 0
@@ -3353,7 +3353,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 6/6
+  m_Text: 6 / 6
 --- !u!222 &2092441710
 CanvasRenderer:
   m_ObjectHideFlags: 0
