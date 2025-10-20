@@ -54,16 +54,30 @@ public class Shoot : MonoBehaviour
                 //Empezamos la fase Began
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    bullet--;
+
                     //Lanzamos un ray desde la dirección del dedo
                     Ray ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
                     RaycastHit hit;
                     //Si el rayo choca con un objeto con la layer enemy
-                    if (Physics.Raycast(ray, out hit, 10, Enemy))
+                    if (Physics.Raycast(ray, out hit, 10))
                     {
-                        //Obtenemos el Script Score y desactivamos el objeto
-                        _scoreRef = hit.collider.gameObject.GetComponent<Score>();
-                        hit.collider.gameObject.SetActive(false);
+                        string tagHit = hit.collider.gameObject.tag;
+                        if(tagHit == "Enemigo")
+                        {
+                            bullet--;
+                            //Obtenemos el Script Score y desactivamos el objeto
+                            _scoreRef = hit.collider.gameObject.GetComponent<Score>();
+                            hit.collider.gameObject.SetActive(false);
+                        }
+                        if (tagHit == "Escenario")
+                        {
+                            bullet--;
+                        }
+                        if (tagHit == "RecargaObjeto")
+                        {
+
+                        }
+                        /*
                         //SI el enemigo tiene el Script le sumamos el numero a la puntuacion
                         if (_scoreRef != null)
                         {
@@ -82,9 +96,12 @@ public class Shoot : MonoBehaviour
                             {
                                 spawner.AddToRespawnList(hit.collider.gameObject);
                             }
-
-                        }
-                        else return;
+                        */
+                        
+                    }
+                    else
+                    {
+                        bullet--;
                     }
 
                 }
