@@ -68,6 +68,21 @@ public class Shoot : MonoBehaviour
                             //Obtenemos el Script Score y desactivamos el objeto
                             _scoreRef = hit.collider.gameObject.GetComponent<Score>();
                             hit.collider.gameObject.SetActive(false);
+                            SpawnEnemies spawner = FindObjectOfType<SpawnEnemies>();
+                            //ComboKill combo = FindObjectOfType<ComboKill>();
+                            //int multiplicador = 1;
+
+                            //if (combo != null)
+                            //{
+                            //    multiplicador = combo.AddKill(); // Obtenemos el multiplicador actual
+                            //}
+                            puntuacion = puntuacion + _scoreRef.score;
+
+                            //puntuacion = puntuacion + (_scoreRef.score * multiplicador);
+                            if (spawner != null)
+                            {
+                                spawner.AddToRespawnList(hit.collider.gameObject);
+                            }
                         }
                         if (tagHit == "Escenario")
                         {
@@ -77,27 +92,6 @@ public class Shoot : MonoBehaviour
                         {
 
                         }
-                        /*
-                        //SI el enemigo tiene el Script le sumamos el numero a la puntuacion
-                        if (_scoreRef != null)
-                        {
-                            SpawnEnemies spawner = FindObjectOfType<SpawnEnemies>();
-                            ComboKill combo = FindObjectOfType<ComboKill>();
-                            int multiplicador = 1;
-
-                            if (combo != null)
-                            {
-                                multiplicador = combo.AddKill(); // Obtenemos el multiplicador actual
-                            }
-                            puntuacion = puntuacion + _scoreRef.score;
-
-                            puntuacion = puntuacion + (_scoreRef.score * multiplicador);
-                            if (spawner != null)
-                            {
-                                spawner.AddToRespawnList(hit.collider.gameObject);
-                            }
-                        */
-                        
                     }
                     else
                     {
@@ -114,10 +108,7 @@ public class Shoot : MonoBehaviour
             canShoot = false;
             cargaRapida = true;
         }
-
-
     }
-
     public void RecargaRapida()
     {
         if (cargaRapida == true)
