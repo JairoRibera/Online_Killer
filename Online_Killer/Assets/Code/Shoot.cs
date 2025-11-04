@@ -54,7 +54,7 @@ public class Shoot : MonoBehaviour
                 //Empezamos la fase Began
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-
+                    Debug.Log("Pium Pium");
                     //Lanzamos un ray desde la dirección del dedo
                     Ray ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
                     RaycastHit hit;

@@ -15,18 +15,26 @@ public class SpawnEnemies : MonoBehaviour
     }
     void Update()
     {
-        // Intentamos respawnear si hay enemigos desactivados
-        if (enemigosDesactivados.Count > 0)
-        {
-            respawnTime -= Time.deltaTime;
-            if (respawnTime <= 0f)
-            {
-                RespawnEnemy();
-                respawnTime = 5f; // Reiniciamos contador
-            }
-        }
+        //// Intentamos respawnear si hay enemigos desactivados
+        //if (enemigosDesactivados.Count > 0)
+        //{
+        //    respawnTime -= Time.deltaTime;
+        //    if (respawnTime <= 0f)
+        //    {
+        //        RespawnEnemy();
+        //        respawnTime = 5f; // Reiniciamos contador
+        //    }
+        //}        //// Intentamos respawnear si hay enemigos desactivados
+        //if (enemigosDesactivados.Count > 0)
+        //{
+        //    respawnTime -= Time.deltaTime;
+        //    if (respawnTime <= 0f)
+        //    {
+        //        RespawnEnemy();
+        //        respawnTime = 5f; // Reiniciamos contador
+        //    }
+        //}
     }
-
     // Agregar enemigos a la lista de desactivados (lo llamas desde tu script de disparo)
     public void AddToRespawnList(GameObject enemigo)
     {
