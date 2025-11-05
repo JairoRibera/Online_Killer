@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class Shoot : MonoBehaviour
 {
     private Camera cam;
-    public float maxDistance = 10f;
+    private float maxDistance = 100f;
     public LayerMask Enemy;
     public Text textScore;
     private Score _scoreRef;
     private float puntuacion = 0;
     public Text balaText;
-    //[Header("Balas y Recarga")]
+    [Header("Balas y Recarga")]
     public int cargador = 6;
     public int bullet = 6;
     public bool canShoot = true;
@@ -35,6 +35,10 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SimpleInput.GetButtonDown(Recarga))
+        {
+            Debug.Log("Botón de recarga presionado");
+        }
         Mostrartexto();
         RecargaRapida();
         Recargar();
@@ -51,15 +55,22 @@ public class Shoot : MonoBehaviour
                 //Restamos 1 a la municion
                 if(bullet > 0)
             {
+                Ray ray = cam.ScreenPointToRay(touch.position);
+                RaycastHit hit;
+
+                // Lanzamos un rayo desde la cámara hacia donde el jugador tocó
+
                 //Empezamos la fase Began
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     Debug.Log("Pium Pium");
                     //Lanzamos un ray desde la dirección del dedo
-                    Ray ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
-                    RaycastHit hit;
-                    //Si el rayo choca con un objeto con la layer enemy
-                    if (Physics.Raycast(ray, out hit, 10))
+                    //Ray ray = cam.ScreenPointToRay(touch.position);
+                    //RaycastHit hit;
+                    Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.red, 1f);
+                    //Si el rayo choca con un objeto con la layer enemy, ~0 detecta todas las capas posibles
+                    //Detecta colliders normales y triggers
+                    if (Physics.Raycast(ray, out hit, maxDistance, ~0, QueryTriggerInteraction.Collide))
                     {
                         string tagHit = hit.collider.gameObject.tag;
                         if(tagHit == "Enemigo")
@@ -90,7 +101,7 @@ public class Shoot : MonoBehaviour
                         }
                         if (tagHit == "RecargaObjeto")
                         {
-
+                            Debug.Log("ObjetoRecarga");
                         }
                     }
                     else
@@ -123,6 +134,7 @@ public class Shoot : MonoBehaviour
             }
             if (bullet <= 0 && cargaRapidaContador > 0 && SimpleInput.GetButtonDown(Recarga))
             {
+
                 reloadContador = reloadTiempo;
                 //reloadContador = 0;
                 bullet = cargador;
