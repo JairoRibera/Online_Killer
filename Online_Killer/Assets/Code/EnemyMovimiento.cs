@@ -7,16 +7,16 @@ public class EnemyMovimiento : MonoBehaviour
 {
     Camera cam;
     public GameObject[] points;
-    public float speed = 5f;
-    public float contadorEspera = 0;
-    public float tiempoEspera = 5;
+    private float speed = 10f;
+    private float contadorEspera = 0;
+    private float tiempoEspera = .5f;
     public bool cerca = false;
     public float distancia;
     private Vector3 target; 
     // Start is called before the first frame update
     void Start()
     {
-        points = GameObject.FindGameObjectsWithTag("RandomPoint");
+        //points = GameObject.FindGameObjectsWithTag("RandomPoint");
         contadorEspera = tiempoEspera;
         FindRandomPoint();
         cam = Camera.main;
@@ -25,8 +25,9 @@ public class EnemyMovimiento : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float randomVelocity = Random.Range(4, speed);
         //if (target == Vector3.zero) return; // si no hay punto activo, no hacer nada
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target, randomVelocity * Time.deltaTime);
         transform.LookAt(cam.transform.position);
         distancia = Vector3.Distance(transform.position,target);
 
