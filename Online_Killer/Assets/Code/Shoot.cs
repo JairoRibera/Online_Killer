@@ -23,6 +23,9 @@ public class Shoot : MonoBehaviour
     public float cargaRapidaContador = 0f;
     public bool cargaRapida = false;
     public string Recarga = "Recarga";
+    public int EnemigosEliminados;
+    private  ComboKill combo;
+    public bool comboActivado;
     [Header("Animacion y Particulas")]
     public GameObject SistemaParticulas;
     public Animator anim_Boton_Recarga;
@@ -36,6 +39,7 @@ public class Shoot : MonoBehaviour
         reloadContador = reloadTiempo;
         cargaRapidaContador = cargaRapidaTiempo;
         balaText.text = "6 / " + bullet.ToString();
+        combo = GetComponent<ComboKill>();
     }
 
     // Update is called once per frame
@@ -91,21 +95,24 @@ public class Shoot : MonoBehaviour
                             //Obtenemos el Script Score y desactivamos el objeto
                             _scoreRef = hit.collider.gameObject.GetComponent<Score>();
                             hit.collider.gameObject.SetActive(false);
-                            SpawnEnemies spawner = FindObjectOfType<SpawnEnemies>();
-                            //ComboKill combo = FindObjectOfType<ComboKill>();
-                            //int multiplicador = 1;
-
-                            //if (combo != null)
-                            //{
-                            //    multiplicador = combo.AddKill(); // Obtenemos el multiplicador actual
-                            //}
-                            puntuacion = puntuacion + _scoreRef.score;
+                            //SpawnEnemies spawner = FindObjectOfType<SpawnEnemies>();
+                            EnemigosEliminados++;
+                            if (combo != null)
+                            {
+                                int multiplicador = 1; // Por defecto sin combo
+                                if (EnemigosEliminados >= 4)
+                                {
+                                    comboActivado = true;
+                                    multiplicador = combo.AddKill(); // Solo ahora aplicamos multiplicador real
+                                }
+                                puntuacion += _scoreRef.score * multiplicador;
+                            }
 
                             //puntuacion = puntuacion + (_scoreRef.score * multiplicador);
-                            if (spawner != null)
-                            {
-                                spawner.AddToRespawnList(hit.collider.gameObject);
-                            }
+                            //if (spawner != null)
+                            //{
+                            //    spawner.AddToRespawnList(hit.collider.gameObject);
+                            //}
                         }
                         if (tagHit == "Escenario")
                         {
@@ -121,6 +128,8 @@ public class Shoot : MonoBehaviour
                         bullet--;
                         GameObject Particulas =Instantiate(SistemaParticulas, ray.origin + ray.direction * 10f, Quaternion.identity);
                         StartCoroutine(SistemaDeParticulasCO(Particulas));
+                        if (combo != null)
+                            combo.FailShot();
                     }
 
                 }
