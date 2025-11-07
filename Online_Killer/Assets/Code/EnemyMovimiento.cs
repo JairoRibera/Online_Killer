@@ -12,7 +12,8 @@ public class EnemyMovimiento : MonoBehaviour
     private float tiempoEspera = .5f;
     public bool cerca = false;
     public float distancia;
-    private Vector3 target; 
+    private Vector3 target;
+    public bool isActive;
     // Start is called before the first frame update
     void Start()
     {

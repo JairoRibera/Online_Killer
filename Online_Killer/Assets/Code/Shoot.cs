@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 public class Shoot : MonoBehaviour
@@ -22,6 +23,11 @@ public class Shoot : MonoBehaviour
     public float cargaRapidaContador = 0f;
     public bool cargaRapida = false;
     public string Recarga = "Recarga";
+    [Header("Animacion y Particulas")]
+    public GameObject SistemaParticulas;
+    public Animator anim_Boton_Recarga;
+    public GameObject Recarga_Text;
+    public Animator anim_Text_Recarga;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,10 +41,6 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SimpleInput.GetButtonDown(Recarga))
-        {
-            Debug.Log("Botón de recarga presionado");
-        }
         Mostrartexto();
         RecargaRapida();
         Recargar();
@@ -49,31 +51,41 @@ public class Shoot : MonoBehaviour
 
         if (canShoot == true && Input.touchCount > 0)
         {
+            Recarga_Text.SetActive(false);
             //Si el contador Touch es mayor a 1
-                //Guarda el input del primer dedo
-                Touch touch = Input.GetTouch(0);
+            //Guarda el input del primer dedo
+            Touch touch = Input.GetTouch(0);
                 //Restamos 1 a la municion
                 if(bullet > 0)
             {
                 Ray ray = cam.ScreenPointToRay(touch.position);
                 RaycastHit hit;
-
                 // Lanzamos un rayo desde la cámara hacia donde el jugador tocó
 
                 //Empezamos la fase Began
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     Debug.Log("Pium Pium");
+
                     //Lanzamos un ray desde la dirección del dedo
                     //Ray ray = cam.ScreenPointToRay(touch.position);
                     //RaycastHit hit;
                     Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.red, 1f);
                     //Si el rayo choca con un objeto con la layer enemy, ~0 detecta todas las capas posibles
                     //Detecta colliders normales y triggers
+                    
                     if (Physics.Raycast(ray, out hit, maxDistance, ~0, QueryTriggerInteraction.Collide))
                     {
                         string tagHit = hit.collider.gameObject.tag;
-                        if(tagHit == "Enemigo")
+                        // Instanciar partículas si NO es un objeto de recarga
+                        if (tagHit != "RecargaObjeto")
+                        {
+                            GameObject Particulas =Instantiate(SistemaParticulas, hit.point, Quaternion.identity);
+                            StartCoroutine(SistemaDeParticulasCO(Particulas));
+                        }
+                        //Instantiate(SistemaParticulas, hit.transform.position, SistemaParticulas.transform.rotation);
+                        //StartCoroutine(SistemaDeParticulasCO());
+                        if (tagHit == "Enemigo")
                         {
                             bullet--;
                             //Obtenemos el Script Score y desactivamos el objeto
@@ -107,6 +119,8 @@ public class Shoot : MonoBehaviour
                     else
                     {
                         bullet--;
+                        GameObject Particulas =Instantiate(SistemaParticulas, ray.origin + ray.direction * 10f, Quaternion.identity);
+                        StartCoroutine(SistemaDeParticulasCO(Particulas));
                     }
 
                 }
@@ -120,10 +134,18 @@ public class Shoot : MonoBehaviour
             cargaRapida = true;
         }
     }
+    private IEnumerator SistemaDeParticulasCO(GameObject Particulas)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(Particulas);
+    }
     public void RecargaRapida()
     {
         if (cargaRapida == true)
         {
+            Recarga_Text.SetActive(true);
+            anim_Boton_Recarga.SetBool("Recargando", true);
+            anim_Text_Recarga.SetBool("Recargando", true);
             cargaRapidaContador -= Time.deltaTime;
             Debug.Log("Recarga Rapida");
             if (cargaRapidaContador <= 0)
@@ -131,6 +153,9 @@ public class Shoot : MonoBehaviour
                 Debug.Log("Perdiste la carga rapida");
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
+                anim_Boton_Recarga.SetBool("Recargando", false);
+                anim_Text_Recarga.SetBool("Recargando", false);
+
             }
             if (bullet <= 0 && cargaRapidaContador > 0 && SimpleInput.GetButtonDown(Recarga))
             {
@@ -141,6 +166,8 @@ public class Shoot : MonoBehaviour
                 canShoot = true;
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
+                anim_Boton_Recarga.SetBool("Recargando", false);
+                anim_Text_Recarga.SetBool("Recargando", false);
             }
 
         }
@@ -155,6 +182,7 @@ public class Shoot : MonoBehaviour
                 bullet = cargador;
                 canShoot = true;
                 reloadContador = reloadTiempo;
+
             }
         }
     }
