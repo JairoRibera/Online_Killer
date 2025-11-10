@@ -31,6 +31,7 @@ public class Shoot : MonoBehaviour
     public Animator anim_Boton_Recarga;
     public GameObject Recarga_Text;
     public Animator anim_Text_Recarga;
+    public GameObject MuerteAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -84,7 +85,7 @@ public class Shoot : MonoBehaviour
                         // Instanciar partículas si NO es un objeto de recarga
                         if (tagHit != "RecargaObjeto")
                         {
-                            GameObject Particulas =Instantiate(SistemaParticulas, hit.point, Quaternion.identity);
+                            GameObject Particulas = Instantiate(SistemaParticulas, hit.point, Quaternion.identity);
                             StartCoroutine(SistemaDeParticulasCO(Particulas));
                         }
                         //Instantiate(SistemaParticulas, hit.transform.position, SistemaParticulas.transform.rotation);
@@ -92,6 +93,9 @@ public class Shoot : MonoBehaviour
                         if (tagHit == "Enemigo")
                         {
                             bullet--;
+                            GameObject AnimacionEnemigo = Instantiate(MuerteAnim, hit.point, Quaternion.identity);
+                            StartCoroutine(AnimacionMuerteCo(AnimacionEnemigo));
+
                             //Obtenemos el Script Score y desactivamos el objeto
                             _scoreRef = hit.collider.gameObject.GetComponent<Score>();
                             hit.collider.gameObject.SetActive(false);
@@ -148,6 +152,11 @@ public class Shoot : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Destroy(Particulas);
     }
+    private IEnumerator AnimacionMuerteCo(GameObject AnimacionEnemigo)
+    {
+        yield return new WaitForSeconds(0.35f);
+        Destroy(AnimacionEnemigo);
+    }
     public void RecargaRapida()
     {
         if (cargaRapida == true)
@@ -191,6 +200,7 @@ public class Shoot : MonoBehaviour
                 bullet = cargador;
                 canShoot = true;
                 reloadContador = reloadTiempo;
+                Recarga_Text.SetActive(false);
 
             }
         }
