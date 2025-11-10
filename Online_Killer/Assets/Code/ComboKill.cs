@@ -96,7 +96,7 @@ public class ComboKill : MonoBehaviour
 
         if (multiplierText != null)
             //multiplierText.text = $"x{multiplier}";
-            multiplierText.text = $"Combo x {multiplier}";
+            multiplierText.text = $"x {multiplier}";
 
     }
     public void FailShot()
