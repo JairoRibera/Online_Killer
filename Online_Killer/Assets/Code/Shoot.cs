@@ -17,9 +17,9 @@ public class Shoot : MonoBehaviour
     public int bullet = 6;
     public bool canShoot = true;
     //public bool isreloading = false;
-    private float reloadTiempo = 7f;
+    private float reloadTiempo = 2f;
     public float reloadContador = 0f;
-    private float cargaRapidaTiempo = 5f;
+    private float cargaRapidaTiempo = 1f;
     public float cargaRapidaContador = 0f;
     public bool cargaRapida = false;
     public string Recarga = "Recarga";
@@ -173,7 +173,7 @@ public class Shoot : MonoBehaviour
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
                 anim_Boton_Recarga.SetBool("Recargando", false);
-                anim_Text_Recarga.SetBool("Recargando", false);
+                //anim_Text_Recarga.SetBool("Recargando", false);
 
             }
             if (bullet <= 0 && cargaRapidaContador > 0 && SimpleInput.GetButtonDown(Recarga))
@@ -193,7 +193,7 @@ public class Shoot : MonoBehaviour
     }
     public void Recargar()
     {
-        if(canShoot == false)
+        if (canShoot == false && cargaRapida == false)
         {
             reloadContador -= Time.deltaTime;
             if (reloadContador <= 0f)
