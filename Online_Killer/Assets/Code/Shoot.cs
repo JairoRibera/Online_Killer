@@ -31,7 +31,8 @@ public class Shoot : MonoBehaviour
     public Animator anim_Boton_Recarga;
     public GameObject Recarga_Text;
     public Animator anim_Text_Recarga;
-    public GameObject MuerteAnim;
+    //public GameObject MuerteAnim;
+    public GameObject Particulas_Muerte;
     // Start is called before the first frame update
     void Start()
     {
@@ -93,8 +94,8 @@ public class Shoot : MonoBehaviour
                         if (tagHit == "Enemigo")
                         {
                             bullet--;
-                            GameObject AnimacionEnemigo = Instantiate(MuerteAnim, hit.point, Quaternion.identity);
-                            StartCoroutine(AnimacionMuerteCo(AnimacionEnemigo));
+                            GameObject Particulas_muerte = Instantiate(Particulas_Muerte, hit.point, Quaternion.identity);
+                            StartCoroutine(AnimacionMuerteCo(Particulas_muerte));
 
                             //Obtenemos el Script Score y desactivamos el objeto
                             _scoreRef = hit.collider.gameObject.GetComponent<Score>();
@@ -152,10 +153,10 @@ public class Shoot : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Destroy(Particulas);
     }
-    private IEnumerator AnimacionMuerteCo(GameObject AnimacionEnemigo)
+    private IEnumerator AnimacionMuerteCo(GameObject Particulas_muerte)
     {
-        yield return new WaitForSeconds(0.35f);
-        Destroy(AnimacionEnemigo);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(Particulas_muerte);
     }
     public void RecargaRapida()
     {

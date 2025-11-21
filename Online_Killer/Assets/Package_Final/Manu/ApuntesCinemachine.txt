@@ -1,0 +1,4 @@
+1º Crear un objeto vació llamado director > añadir componente "Playable director"
+2º Crear timeLine, en timeLine, click derecho añadir shot para añadir VirtualCamera, para crear transiciones mezclar unos y otros
+3ºAñadir doly, click derecho cinemachine, dollytrack, configurar dolly, crear shot, virtual camera > body "tracked dolly" > path "meter el dolly"
+4º En el time line click derecho, Animation track, meter el animator de la VIRTUAL CAMERA CON EL DOLLY, animar grabando, mover el valor "Path position"
