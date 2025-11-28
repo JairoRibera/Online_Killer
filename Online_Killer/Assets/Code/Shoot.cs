@@ -17,9 +17,9 @@ public class Shoot : MonoBehaviour
     public int bullet = 6;
     public bool canShoot = true;
     //public bool isreloading = false;
-    private float reloadTiempo = 7f;
+    private float reloadTiempo = 2f;
     public float reloadContador = 0f;
-    private float cargaRapidaTiempo = 5f;
+    private float cargaRapidaTiempo = 1f;
     public float cargaRapidaContador = 0f;
     public bool cargaRapida = false;
     public string Recarga = "Recarga";
@@ -31,7 +31,8 @@ public class Shoot : MonoBehaviour
     public Animator anim_Boton_Recarga;
     public GameObject Recarga_Text;
     public Animator anim_Text_Recarga;
-    public GameObject MuerteAnim;
+    //public GameObject MuerteAnim;
+    public GameObject Particulas_Muerte;
     // Start is called before the first frame update
     void Start()
     {
@@ -93,8 +94,8 @@ public class Shoot : MonoBehaviour
                         if (tagHit == "Enemigo")
                         {
                             bullet--;
-                            GameObject AnimacionEnemigo = Instantiate(MuerteAnim, hit.point, Quaternion.identity);
-                            StartCoroutine(AnimacionMuerteCo(AnimacionEnemigo));
+                            GameObject Particulas_muerte = Instantiate(Particulas_Muerte, hit.point, Quaternion.identity);
+                            StartCoroutine(AnimacionMuerteCo(Particulas_muerte));
 
                             //Obtenemos el Script Score y desactivamos el objeto
                             _scoreRef = hit.collider.gameObject.GetComponent<Score>();
@@ -152,10 +153,10 @@ public class Shoot : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Destroy(Particulas);
     }
-    private IEnumerator AnimacionMuerteCo(GameObject AnimacionEnemigo)
+    private IEnumerator AnimacionMuerteCo(GameObject Particulas_muerte)
     {
-        yield return new WaitForSeconds(0.35f);
-        Destroy(AnimacionEnemigo);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(Particulas_muerte);
     }
     public void RecargaRapida()
     {
@@ -172,7 +173,7 @@ public class Shoot : MonoBehaviour
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
                 anim_Boton_Recarga.SetBool("Recargando", false);
-                anim_Text_Recarga.SetBool("Recargando", false);
+                //anim_Text_Recarga.SetBool("Recargando", false);
 
             }
             if (bullet <= 0 && cargaRapidaContador > 0 && SimpleInput.GetButtonDown(Recarga))
@@ -192,7 +193,7 @@ public class Shoot : MonoBehaviour
     }
     public void Recargar()
     {
-        if(canShoot == false)
+        if (canShoot == false && cargaRapida == false)
         {
             reloadContador -= Time.deltaTime;
             if (reloadContador <= 0f)
