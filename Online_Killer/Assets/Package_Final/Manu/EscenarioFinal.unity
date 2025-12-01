@@ -3928,7 +3928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &289612575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12364,7 +12364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &788272476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23933,6 +23933,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoVolador (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4859141107804771741, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24921,7 +24926,7 @@ PrefabInstance:
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1799998
+      value: -3.46
       objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
@@ -24931,7 +24936,7 @@ PrefabInstance:
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.42
+      value: -4.7
       objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
