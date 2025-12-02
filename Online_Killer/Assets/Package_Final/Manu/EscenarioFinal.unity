@@ -16460,6 +16460,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoVolador (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21516,6 +21531,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoVolador (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22184,6 +22214,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemigoVolador (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
@@ -27806,6 +27851,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoVolador (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28054,6 +28114,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemigoVolador (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
@@ -30794,6 +30869,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoVolador (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31399,6 +31489,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1550531055}
     m_Modifications:
+    - target: {fileID: 2636795351776638105, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3482795247409562639, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
       propertyPath: CanMove
@@ -31453,6 +31548,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemigoVolador (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
@@ -35221,6 +35331,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemigoVolador
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367118441404146875, guid: 8d016c7af696d2d45af2211be9edd6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5486949029121203998, guid: 8d016c7af696d2d45af2211be9edd6f7,
         type: 3}
