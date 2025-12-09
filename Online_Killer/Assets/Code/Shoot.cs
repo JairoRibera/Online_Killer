@@ -28,9 +28,11 @@ public class Shoot : MonoBehaviour
     public bool comboActivado;
     [Header("Animacion y Particulas")]
     public GameObject SistemaParticulas;
-    public Animator anim_Boton_Recarga;
+    //public Animator anim_Boton_Recarga;
+    public Animator anim_ComboBack;
+    //public Animator anim_MultiplerText;
     public GameObject Recarga_Text;
-    public Animator anim_Text_Recarga;
+    //public Animator anim_Text_Recarga;
     //public GameObject MuerteAnim;
     public GameObject Particulas_Muerte;
     // Start is called before the first frame update
@@ -109,8 +111,21 @@ public class Shoot : MonoBehaviour
                                 {
                                     comboActivado = true;
                                     multiplicador = combo.AddKill(); // Solo ahora aplicamos multiplicador real
+                                    Debug.Log("Animacion");
                                 }
                                 puntuacion += _scoreRef.score * multiplicador;
+                                //if(comboActivado== true)
+                                //{
+                                //    //anim_ComboBack.SetBool("Recargando_ComboBack", true);
+                                //    //anim_MultiplerText.SetBool("Recargando_", true);
+
+                                //}
+                                //else
+                                //{
+                                //    //anim_ComboBack.SetBool("Recargando_ComboBack", false);
+                                //    //anim_MultiplerText.SetBool("Recargando_", false);
+                                //    Debug.Log("FinAnimacion");
+                                //}
                             }
 
                             //puntuacion = puntuacion + (_scoreRef.score * multiplicador);
@@ -163,8 +178,8 @@ public class Shoot : MonoBehaviour
         if (cargaRapida == true)
         {
             Recarga_Text.SetActive(true);
-            anim_Boton_Recarga.SetBool("Recargando", true);
-            anim_Text_Recarga.SetBool("Recargando", true);
+            //anim_Boton_Recarga.SetBool("Recargando", true);
+            //anim_Text_Recarga.SetBool("Recargando", true);
             cargaRapidaContador -= Time.deltaTime;
             Debug.Log("Recarga Rapida");
             if (cargaRapidaContador <= 0)
@@ -172,7 +187,7 @@ public class Shoot : MonoBehaviour
                 Debug.Log("Perdiste la carga rapida");
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
-                anim_Boton_Recarga.SetBool("Recargando", false);
+                //anim_Boton_Recarga.SetBool("Recargando", false);
                 //anim_Text_Recarga.SetBool("Recargando", false);
 
             }
@@ -185,8 +200,8 @@ public class Shoot : MonoBehaviour
                 canShoot = true;
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
-                anim_Boton_Recarga.SetBool("Recargando", false);
-                anim_Text_Recarga.SetBool("Recargando", false);
+                //anim_Boton_Recarga.SetBool("Recargando", false);
+                //anim_Text_Recarga.SetBool("Recargando", false);
             }
 
         }
@@ -209,7 +224,7 @@ public class Shoot : MonoBehaviour
     private void Mostrartexto()
     {
         //El texto será igual a la puntuacion
-        textScore.text = "Puntuación " + puntuacion.ToString();
+        textScore.text = puntuacion.ToString();
         balaText.text = "6 / " + bullet.ToString();
     }
 }

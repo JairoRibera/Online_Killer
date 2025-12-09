@@ -19,6 +19,9 @@ public class ComboKill : MonoBehaviour
     private int multiplier;
     private bool isActive;
     private Shoot shoot_Ref;
+    [Header("Animacion y Particulas")]
+
+    public Animator anim_ComboBack;
     void Start()
     {
         shoot_Ref = GetComponent<Shoot>();
@@ -30,7 +33,7 @@ public class ComboKill : MonoBehaviour
         if (shoot_Ref.comboActivado == true)
         {
             comboTimer -= Time.deltaTime;
-
+            anim_ComboBack.SetBool("Recargando_ComboBack", true);
             if (comboTimer <= 0f)
             {
                 ResetCombo();
@@ -82,7 +85,9 @@ public class ComboKill : MonoBehaviour
 
     private void ResetCombo()
     {
+        Debug.Log("ResetCombo");
         shoot_Ref.comboActivado = false;
+        anim_ComboBack.SetBool("Recargando_ComboBack", false);
         multiplier = baseMultiplier;
         comboTimer = 0;
         shoot_Ref.EnemigosEliminados = 0;
@@ -96,7 +101,7 @@ public class ComboKill : MonoBehaviour
 
         if (multiplierText != null)
             //multiplierText.text = $"x{multiplier}";
-            multiplierText.text = $"x {multiplier}";
+            multiplierText.text = $"x{multiplier}";
 
     }
     public void FailShot()
