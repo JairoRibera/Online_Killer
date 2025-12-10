@@ -83,7 +83,7 @@ public class ComboKill : MonoBehaviour
         return multiplier;             // Devuelve el multiplicador actual
     }
 
-    private void ResetCombo()
+    public void ResetCombo()
     {
         Debug.Log("ResetCombo");
         shoot_Ref.comboActivado = false;

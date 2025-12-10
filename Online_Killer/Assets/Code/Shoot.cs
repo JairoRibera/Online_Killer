@@ -138,6 +138,7 @@ public class Shoot : MonoBehaviour
                         if (tagHit == "Escenario")
                         {
                             bullet--;
+                            combo.ResetCombo();
                         }
                         if (tagHit == "RecargaObjeto")
                         {
