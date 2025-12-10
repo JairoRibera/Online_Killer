@@ -30,6 +30,7 @@ public class Shoot : MonoBehaviour
     public GameObject SistemaParticulas;
     //public Animator anim_Boton_Recarga;
     public Animator anim_ComboBack;
+    public Animator anim_Shoot;
     //public Animator anim_MultiplerText;
     public GameObject Recarga_Text;
     //public Animator anim_Text_Recarga;
@@ -74,7 +75,7 @@ public class Shoot : MonoBehaviour
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     Debug.Log("Pium Pium");
-
+                    anim_Shoot.SetBool("Shoot", true);
                     //Lanzamos un ray desde la dirección del dedo
                     //Ray ray = cam.ScreenPointToRay(touch.position);
                     //RaycastHit hit;
@@ -141,6 +142,7 @@ public class Shoot : MonoBehaviour
                         if (tagHit == "RecargaObjeto")
                         {
                             Debug.Log("ObjetoRecarga");
+                            anim_Shoot.SetBool("Shoot", false);
                         }
                     }
                     else
@@ -153,6 +155,10 @@ public class Shoot : MonoBehaviour
                     }
 
                 }
+                if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    anim_Shoot.SetBool("Shoot", false);
+                }
             }
 
 
@@ -161,6 +167,7 @@ public class Shoot : MonoBehaviour
         {
             canShoot = false;
             cargaRapida = true;
+            anim_Shoot.SetBool("IsReload", true);
         }
     }
     private IEnumerator SistemaDeParticulasCO(GameObject Particulas)
@@ -177,6 +184,7 @@ public class Shoot : MonoBehaviour
     {
         if (cargaRapida == true)
         {
+            anim_Shoot.SetBool("Shoot", false);
             Recarga_Text.SetActive(true);
             //anim_Boton_Recarga.SetBool("Recargando", true);
             //anim_Text_Recarga.SetBool("Recargando", true);
@@ -184,6 +192,7 @@ public class Shoot : MonoBehaviour
             Debug.Log("Recarga Rapida");
             if (cargaRapidaContador <= 0)
             {
+                anim_Shoot.SetBool("IsReload", false);
                 Debug.Log("Perdiste la carga rapida");
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
@@ -195,6 +204,7 @@ public class Shoot : MonoBehaviour
             {
 
                 reloadContador = reloadTiempo;
+                anim_Shoot.SetBool("IsReload", false);
                 //reloadContador = 0;
                 bullet = cargador;
                 canShoot = true;
@@ -210,6 +220,7 @@ public class Shoot : MonoBehaviour
     {
         if (canShoot == false && cargaRapida == false)
         {
+            anim_Shoot.SetBool("Shoot", false);
             reloadContador -= Time.deltaTime;
             if (reloadContador <= 0f)
             {
