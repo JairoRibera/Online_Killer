@@ -36,6 +36,7 @@ public class Shoot : MonoBehaviour
     //public Animator anim_Text_Recarga;
     //public GameObject MuerteAnim;
     public GameObject Particulas_Muerte;
+    public GameObject ComboImagen;
     // Start is called before the first frame update
     void Start()
     {
@@ -110,10 +111,12 @@ public class Shoot : MonoBehaviour
                                 int multiplicador = 1; // Por defecto sin combo
                                 if (EnemigosEliminados >= 4)
                                 {
+                                    ComboImagen.SetActive(true);
                                     comboActivado = true;
                                     multiplicador = combo.AddKill(); // Solo ahora aplicamos multiplicador real
                                     Debug.Log("Animacion");
                                 }
+
                                 puntuacion += _scoreRef.score * multiplicador;
                                 //if(comboActivado== true)
                                 //{

@@ -14,6 +14,7 @@ public class ComboKill : MonoBehaviour
     [Header("UI")]
     public Text comboText;
     public Text multiplierText;
+    public GameObject ComboImagen;
 
     private float comboTimer;
     private int multiplier;
@@ -85,6 +86,7 @@ public class ComboKill : MonoBehaviour
 
     public void ResetCombo()
     {
+        ComboImagen.SetActive(false);
         Debug.Log("ResetCombo");
         shoot_Ref.comboActivado = false;
         anim_ComboBack.SetBool("Recargando_ComboBack", false);
