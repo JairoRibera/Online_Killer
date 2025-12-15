@@ -13,6 +13,7 @@ public class Shoot : MonoBehaviour
     private float puntuacion = 0;
     public Text balaText;
     [Header("Balas y Recarga")]
+    private UI_Controller _UIController;
     public int cargador = 6;
     public int bullet = 6;
     public bool canShoot = true;
@@ -46,6 +47,7 @@ public class Shoot : MonoBehaviour
         cargaRapidaContador = cargaRapidaTiempo;
         balaText.text = "6 / " + bullet.ToString();
         combo = GetComponent<ComboKill>();
+        _UIController = GameObject.Find("Canvas").GetComponent<UI_Controller>();
     }
 
     // Update is called once per frame
@@ -90,6 +92,7 @@ public class Shoot : MonoBehaviour
                         // Instanciar partículas si NO es un objeto de recarga
                         if (tagHit != "RecargaObjeto")
                         {
+
                             GameObject Particulas = Instantiate(SistemaParticulas, hit.point, Quaternion.identity);
                             StartCoroutine(SistemaDeParticulasCO(Particulas));
                         }
@@ -98,6 +101,7 @@ public class Shoot : MonoBehaviour
                         if (tagHit == "Enemigo")
                         {
                             bullet--;
+                            _UIController.UpdateBulletDisplay();
                             GameObject Particulas_muerte = Instantiate(Particulas_Muerte, hit.point, Quaternion.identity);
                             StartCoroutine(AnimacionMuerteCo(Particulas_muerte));
 
@@ -141,6 +145,7 @@ public class Shoot : MonoBehaviour
                         if (tagHit == "Escenario")
                         {
                             bullet--;
+                            _UIController.UpdateBulletDisplay();
                             combo.ResetCombo();
                         }
                         if (tagHit == "RecargaObjeto")
@@ -211,6 +216,7 @@ public class Shoot : MonoBehaviour
                 anim_Shoot.SetBool("IsReload", false);
                 //reloadContador = 0;
                 bullet = cargador;
+                _UIController.UpdateBulletDisplay();
                 canShoot = true;
                 cargaRapida = false;
                 cargaRapidaContador = cargaRapidaTiempo;
@@ -229,6 +235,7 @@ public class Shoot : MonoBehaviour
             if (reloadContador <= 0f)
             {
                 bullet = cargador;
+                _UIController.UpdateBulletDisplay();
                 canShoot = true;
                 reloadContador = reloadTiempo;
                 Recarga_Text.SetActive(false);
