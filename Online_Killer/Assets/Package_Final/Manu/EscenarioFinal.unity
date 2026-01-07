@@ -38734,6 +38734,21 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 5028581522281698431, guid: 713c04532d6b8b247a24c7870a9f4938,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5028581522281698431, guid: 713c04532d6b8b247a24c7870a9f4938,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5028581522281698431, guid: 713c04532d6b8b247a24c7870a9f4938,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.086274385
+      objectReference: {fileID: 0}
     - target: {fileID: 5518087694835323612, guid: 713c04532d6b8b247a24c7870a9f4938,
         type: 3}
       propertyPath: m_LocalPosition.x
