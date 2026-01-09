@@ -5,21 +5,14 @@ using UnityEngine;
 
 public class Iniciar_Animacion : MonoBehaviour
 {
-    public bool isactive = false;
-    // Start is called before the first frame update
-    void Start()
+    Animator animator;
+    void Awake()
     {
-        
+        animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        
-    }
-
-    public void activar()
-    {
-
+        animator.SetTrigger("Activate");
     }
 }
