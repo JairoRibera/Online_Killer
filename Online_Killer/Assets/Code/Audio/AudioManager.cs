@@ -31,15 +31,5 @@ public class AudioManager : MonoBehaviour
         //Reproducir el sonido pasado por parámetro
         soundEffects[soundToPlay].Play();
     }
-    //public void PlayBossMusic()
-    //{
-    //    bgm.Stop();
-    //    bossMusic.Play();
-    //}
-    //public void StopBossMusic()
-    //{
-    //    bossMusic.Stop();
-    //    bgm.Play();
-    //}
 }
 

@@ -8,9 +8,7 @@ public class Shoot : MonoBehaviour
     private Camera cam;
     private float maxDistance = 100f;
     public LayerMask Enemy;
-    public Text textScore;
     private Score _scoreRef;
-    private float puntuacion = 0;
     public Text balaText;
     [Header("Balas y Recarga")]
     private UI_Controller _UIController;
@@ -39,9 +37,22 @@ public class Shoot : MonoBehaviour
     //public GameObject MuerteAnim;
     public GameObject Particulas_Muerte;
     public GameObject ComboImagen;
+
+    [Header("Puntuacion y aciertos")]
+    float aciertofinal = 0;
+    public float NumeroEnemigosMuelto = 0;
+    public float NumeroDeDisparos = 0;
+    public float puntuacion = 0;
+    public Text TextoEnemigosMueltos;
+    public Text Aciertos;
+    public Text NumeroDeDisparo;
+    public Text textScore;
+    public Text PuntuacionFinal;
+
     // Start is called before the first frame update
     void Start()
     {
+
         cam = Camera.main;
         cargador = bullet;
         reloadContador = reloadTiempo;
@@ -49,6 +60,7 @@ public class Shoot : MonoBehaviour
         balaText.text = "6 / " + bullet.ToString();
         combo = GetComponent<ComboKill>();
         _UIController = GameObject.Find("Canvas").GetComponent<UI_Controller>();
+
     }
 
     // Update is called once per frame
@@ -69,15 +81,18 @@ public class Shoot : MonoBehaviour
             //Guarda el input del primer dedo
             Touch touch = Input.GetTouch(0);
                 //Restamos 1 a la municion
-                if(bullet > 0)
+            if(bullet > 0)
             {
                 Ray ray = cam.ScreenPointToRay(touch.position);
                 RaycastHit hit;
+                //Aumentamos los numeros de disparos
+                
                 // Lanzamos un rayo desde la cámara hacia donde el jugador tocó
 
                 //Empezamos la fase Began
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
+
                     Debug.Log("Pium Pium");
                     anim_Reload.SetBool("Shoot", true);
                     AudioManager.audioMReference.PlaySFX(0);
@@ -102,7 +117,10 @@ public class Shoot : MonoBehaviour
                         //StartCoroutine(SistemaDeParticulasCO());
                         if (tagHit == "Enemigo")
                         {
+                            NumeroDeDisparos++;
                             bullet--;
+                            //Aumentamos el numero de enemigos
+                            NumeroEnemigosMuelto++;
                             _UIController.UpdateBulletDisplay();
                             GameObject Particulas_muerte = Instantiate(Particulas_Muerte, hit.point, Quaternion.identity);
                             AudioManager.audioMReference.PlaySFX(1);
@@ -147,6 +165,7 @@ public class Shoot : MonoBehaviour
                         }
                         if (tagHit == "Escenario")
                         {
+                            NumeroDeDisparos++;
                             bullet--;
                             _UIController.UpdateBulletDisplay();
                             combo.ResetCombo();
@@ -254,6 +273,15 @@ public class Shoot : MonoBehaviour
     }
     private void Mostrartexto()
     {
+        if(NumeroDeDisparos > 0)
+        {
+            aciertofinal = NumeroEnemigosMuelto * 100 / NumeroDeDisparos;
+        }
+        PuntuacionFinal.text = "Puntuación final: " + puntuacion.ToString();
+        NumeroDeDisparo.text = "Disparos realizados: " + NumeroDeDisparos.ToString();
+        TextoEnemigosMueltos.text = "Enemigos eliminados: " + NumeroEnemigosMuelto.ToString();
+        //string texto = valor.ToString("F0");
+        Aciertos.text = "Porcentaje de acierto: " + aciertofinal.ToString("F0") + "%";
         //El texto será igual a la puntuacion
         textScore.text = puntuacion.ToString();
         balaText.text = "6 / " + bullet.ToString();
